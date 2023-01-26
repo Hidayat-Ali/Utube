@@ -2,68 +2,70 @@ import { CheckCircle } from "@mui/icons-material";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-import { demoChannelTitle, demoChannelUrl, demoVideoTitle, demoVideoUrl } from "../utils/constants";
+import {
+  demoChannelTitle,
+  demoChannelUrl,
+  demoVideoTitle,
+  demoVideoUrl,
+} from "../utils/constants";
 
 const videoCard = ({
   video: {
     id: { videoId },
-    snippet
-  }
-  
+    snippet,
+  },
 }) => {
   return (
     <Card
-    sx={{
-        width:{md:'320px',xs:'100%'},
-        boxShadow:'none',
-        borderRadius:'0'
-    }}
-
-    
+      sx={{
+        width: {  xs: "100%" ,sm:'358px',md: "320px",},
+        boxShadow: "none",
+        borderRadius: "0",
+      }}
     >
-      <Link to={videoId? `/video/${videoId}` : demoVideoUrl}>
+      <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
         <CardMedia
           image={snippet?.thumbnails?.high?.url}
           alt={snippet?.title}
-          sx={{ width: '358px', height: '180px' }}
+          sx={{
+            width:{
+              xs:'100%',
+              sm:'358px',
+              md:'320px'
+
+            },
+            height:180
+           }}
         />
       </Link>
 
-      <CardContent
-      sx={{backgroundColor:'#1e1e1e',
-           height:'106px'
-       }}
-      >
-        <Link to={videoId ? `/video/${videoId}` : demoVideoUrl} >
-            <Typography varient= "subtitle1"  
-            color='#fff'
-            fontWeight='bold'
-            
-            >
-                {snippet?.title.slice(0,60) || demoVideoTitle.slice(0,60)}
-            </Typography>
-        
+      <CardContent sx={{ backgroundColor: "#1e1e1e", height: "106px" }}>
+        <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
+          <Typography varient="subtitle1" color="#fff" fontWeight="bold">
+            {snippet?.title.slice(0, 60) || demoVideoTitle.slice(0, 60)}
+          </Typography>
         </Link>
 
-        <Link to={snippet?.channelId ? `/channel/${snippet?.channelId}` : demoChannelUrl} >
-            <Typography varient= "subtitle2"  
-            color='gray'
-            
-            >
-                {snippet?.channelTitle.slice(0,60) || demoChannelTitle.slice(0,60)}
+        <Link
+          to={
+            snippet?.channelId
+              ? `/channel/${snippet?.channelId}`
+              : demoChannelUrl
+          }
+        >
+          <Typography varient="subtitle2" color="gray">
+            {snippet?.channelTitle.slice(0, 60) ||
+              demoChannelTitle.slice(0, 60)}
 
-                <CheckCircle
-                sx={{
-                    fontSize:12,
-                    color:'grey',
-                    ml: '5px'
-                }}
-                
-                />
-            </Typography>
-        
+            <CheckCircle
+              sx={{
+                fontSize: 12,
+                color: "grey",
+                ml: "5px",
+              }}
+            />
+          </Typography>
         </Link>
-
       </CardContent>
     </Card>
   );

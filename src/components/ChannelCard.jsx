@@ -5,16 +5,27 @@ import { Link } from "react-router-dom";
 // import { ChannelDetail } from "./ChannelDetail";
 import { demoProfilePicture } from "../utils/constants";
 
-const channelCard = ({ ChannelDetail }) => {
+const channelCard = ({ channelDetail,marginTop , marginLeft }) => {
   return (
     <Box
       sx={{
         width: { md: "320px", xs: "100%" },
         boxShadow: "none",
         borderRadius: "0",
+        dispaly:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        width : {xs:'356px',md:'320px'},
+        margin:'auto',
+        height:'326px',
+        marginTop:marginTop,
+        marginLeft:marginLeft
+        
+
+        
       }}
     >
-      <Link to={`/channel/${ChannelDetail?.id?.channelId}`}>
+      <Link to={`/channel/${channelDetail?.id?.channelId}`}>
         <CardContent
           sx={{
             display: "flex",
@@ -26,10 +37,10 @@ const channelCard = ({ ChannelDetail }) => {
         >
           <CardMedia
             image={
-              ChannelDetail?.snippet?.thumbnails?.high?.url ||
+              channelDetail?.snippet?.thumbnails?.high?.url ||
               demoProfilePicture
             }
-            alt={ChannelDetail?.snippet?.title}
+            alt={channelDetail?.snippet?.title}
             sx={{
               width: "180px",
               height: "180px",
@@ -39,7 +50,7 @@ const channelCard = ({ ChannelDetail }) => {
           />
 
           <Typography variant="h6">
-            {ChannelDetail?.snippet?.title}
+            {channelDetail?.snippet?.title}
             <CheckCircle
               sx={{
                 fontSize: 14,
@@ -48,6 +59,17 @@ const channelCard = ({ ChannelDetail }) => {
               }}
             />
           </Typography>
+
+        
+            {channelDetail?.statistics?.subscriberCount &&(
+
+           <Typography 
+    
+           >
+            {parseInt(channelDetail?.statistics?.subscriberCount).toLocaleString()} subscribers
+           </Typography>
+            )}
+     
         </CardContent>
       </Link>
     </Box>

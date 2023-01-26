@@ -36,7 +36,11 @@ const Feed = () => {
           className="copyright"
           variant="body2"
           sx={{
-            color: "#fff",
+            bgcolor:'#FF82C3',
+            borderRadius:'50px',
+           color:'white',
+           fontSize:'15px',
+          padding:'3px',
             mt: "1.5",
           }}
         >
